@@ -57,7 +57,7 @@ project/
    ```
 
 ## Usage
-- Before running the script, ensure that all necessary data files are in place, such as `coub_query.json`, `task.json`, and `proxy.txt` in the `data/` folder.
+- Before running the script, ensure that all necessary data files are in place, such as `coub_query.json` and `proxy.txt` in the `data/` folder.
 - To start the script, run:
   ```sh
   python main.py
