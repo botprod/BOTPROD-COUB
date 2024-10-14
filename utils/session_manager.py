@@ -105,7 +105,7 @@ class SessionManager:
         if not proxy or proxy == "":
             return False
         try:
-            async with session.get('https://api.ipify.org?format=json', proxy=proxy, timeout=10) as response:
+            async with session.get('https://api.ipify.org?format=json', timeout=10) as response:
                 if response.status == 200:
                     ip = (await response.json()).get('ip')
                     self.log("INFO", "System", f"Proxy is working. Public IP: {ip}")

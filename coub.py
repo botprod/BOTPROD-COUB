@@ -25,26 +25,25 @@ class Coub:
     async def login(self, session, query, headers, proxy=None, login_url=None):
         delay = random.uniform(0, 600)
         if login_url:
-            async with session.get(login_url, headers=headers, proxy=proxy) as response:
+            async with session.get(login_url, headers=headers) as response:
                 time.sleep(5)
                 pass
         log("INFO", self.session_name, f"Waiting for {delay:.2f} seconds before login to simulate user behavior")
         await asyncio.sleep(delay)
         try:
             async with session.get(f"https://coub.com/tg-app/?tgWebAppStartParam={query['start_param']}",
-                                   headers=headers, proxy=proxy) as response:
+                                   headers=headers) as response:
                 if response.status == 200:
                     log("INFO", self.session_name, "Login successful")
                     try:
-                        async with session.post(f"{self.base_url}/sessions/login_mini_app", headers=headers, data=query,
-                                                proxy=proxy) as response:
+                        async with session.post(f"{self.base_url}/sessions/login_mini_app", headers=headers, data=query) as response:
                             if response.status == 200:
                                 log("INFO", self.session_name, "Getting Token")
                                 api_token = (await response.json()).get('api_token', "")
                                 return await self.get_token(session, api_token, headers, proxy)
                             else:
                                 url = f"https://coub.com/api/v2/sessions/signup_mini_app"
-                                async with session.post(url, headers=headers, data=query, proxy=proxy) as response:
+                                async with session.post(url, headers=headers, data=query) as response:
                                     print(query)
                                     if response.status == 200:
                                         log("INFO", self.session_name, "Getting Token")
@@ -73,7 +72,7 @@ class Coub:
         headers['x-auth-token'] = api_token
         url = f"{self.base_url}/torus/token"
         try:
-            async with session.post(url, headers=headers, proxy=proxy) as response:
+            async with session.post(url, headers=headers) as response:
                 if response.status == 200:
                     data = await response.json()
                     access_token = data.get('access_token', '')
@@ -96,7 +95,7 @@ class Coub:
         headers['authorization'] = f"Bearer {token}"
         url = f"https://rewards.coub.com/api/v2/get_user_rewards"
         try:
-            async with session.get(url, headers=headers, proxy=proxy) as response:
+            async with session.get(url, headers=headers) as response:
                 if response.status == 200:
                     return await response.json()
                 else:
@@ -116,7 +115,7 @@ class Coub:
         params = {"task_reward_id": task_id}
         url = f"https://rewards.coub.com/api/v2/complete_task"
         try:
-            async with session.get(url, headers=headers, params=params, proxy=proxy) as response:
+            async with session.get(url, headers=headers, params=params) as response:
                 if response.status == 200:
                     log("INFO", "System", f"ID {task_id} | Task '{task_title}' Done")
                     return await response.json()
