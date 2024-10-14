@@ -75,9 +75,3 @@ project/
 - **parser.py**: Parses user query data to extract meaningful information.
 - **logger.py**: Adds timestamped log messages to help with debugging.
 - **session_manager.py**: Manages sessions, including generation of headers, proxy verification, and session storage.
-
-## Data Files
-- **coub_query.json**: Contains the queries for interacting with the Coub platform.
-- **task.json**: JSON file defining various tasks that the script can execute.
-- **proxy.txt**: Contains proxy addresses to rotate through during requests.
-- **sessions.json**: Stores session details, including proxy, headers, and configuration information.
