@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.env
+*.env
+.DS_Store
+*.log
+.vscode/
+data/coub_query.json
+secrets/
