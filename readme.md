@@ -1,7 +1,11 @@
-# Coub Automation Project
+# Coub-bot
+
+https://t.me/botpr0d
+
+To get query_id from Pyrogram sessions you should use this repo -> https://github.com/botprod/get_query_id
 
 ## Overview
-This project is designed to interact with the Coub API, automate tasks, and streamline various user activities. The script authenticates users, performs actions based on predefined tasks, and works through an asynchronous event loop to handle multiple accounts and tasks concurrently. The script supports proxy handling, including verifying proxy functionality before use.
+Bot for https://t.me/coub/app?startapp=coub__marker_29720096
 
 ## Project Structure
 ```
